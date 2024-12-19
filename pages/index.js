@@ -2,7 +2,18 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      time: new Date().toISOString(),
+      deploymentId:  publicRuntimeConfig.AWS_AMPLIFY_DEPLOYMENT_ID || null,
+      buildTimestamp: publicRuntimeConfig.buildTimestamp || null,
+    },
+  };
+}
+
+export default function Home({time, deploymentId, buildTimestamp}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,6 +30,10 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
+        </p>
+
+        <p>
+          <strong>Deployment ID:</strong> <b>{deploymentId || "Not available"}</b>
         </p>
 
         <div className={styles.grid}>

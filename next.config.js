@@ -61,4 +61,8 @@ module.exports = {
       },
     ];
   },
+  publicRuntimeConfig: {
+    AWS_AMPLIFY_DEPLOYMENT_ID: process.env.AWS_AMPLIFY_DEPLOYMENT_ID,
+    buildTimestamp: new Date().toISOString(),
+  },
 };
