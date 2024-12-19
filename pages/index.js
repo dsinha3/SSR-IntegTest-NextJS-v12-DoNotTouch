@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import getConfig from 'next/config';
 
+
+const { publicRuntimeConfig } = getConfig();
 
 export async function getServerSideProps() {
   return {
